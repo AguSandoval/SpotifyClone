@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 
 export interface IPortraitProps {
@@ -9,34 +9,22 @@ export interface IPortraitProps {
 const Portrait: React.FC<IPortraitProps> = ({ title, image }) => {
     return (
         <View style={style.portraitContainer}>
-            <Image
-                style={style.portraitLogo}
-                source={{
-                    uri: image,
-                }}
-            />
-            <Text style={style.portraitText} numberOfLines={1}>
-                {title}
-            </Text>
+            <TouchableOpacity activeOpacity={0.6}>
+                <Image
+                    style={style.portraitImage}
+                    source={{
+                        uri: image,
+                    }}
+                />
+                <Text style={style.portraitText} numberOfLines={1}>
+                    {title}
+                </Text>
+            </TouchableOpacity>
         </View>
     );
 };
 
 const style = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: "row",
-        padding: 10,
-        justifyContent: "flex-start",
-        alignItems: "center",
-    },
-    containerTitle: {
-        color: "white",
-        fontSize: 20,
-        fontWeight: "bold",
-        marginTop: 25,
-        marginBottom: 15,
-    },
     portraitContainer: {
         justifyContent: "center",
         alignItems: "center",
@@ -44,7 +32,7 @@ const style = StyleSheet.create({
         width: 150,
         height: 180,
     },
-    portraitLogo: {
+    portraitImage: {
         width: 150,
         height: 150,
         marginBottom: 10,

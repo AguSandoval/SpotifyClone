@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import PortraitCarrousel from "../../components/PortraitCarrousel";
 import Welcome from "../../components/Welcome";
+import TopBar from "../../components/TopBar";
+import BottomBar from "../../components/BottomBar";
 
 const { width } = Dimensions.get("window");
 
@@ -34,14 +36,8 @@ const HomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
             ) : (
                 <>
                     <ScrollView contentContainerStyle={style.contentContainer}>
-                        <Animated.View style={style.topBar}>
-                            <LinearGradient
-                                colors={["rgb(29, 185, 84)", "transparent"]}
-                                style={style.topBarGradient}
-                            />
-                            <Text style={{ color: "white", fontSize: 20 }}>
-                                TopBar
-                            </Text>
+                        <Animated.View style={{ opacity }}>
+                            <TopBar />
                         </Animated.View>
                         <Animated.View
                             style={{
@@ -49,6 +45,7 @@ const HomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
                                 ...style.animatedView,
                             }}
                         >
+                            {/* En Spotify se renderiza según la actividad del usuario, aquí sólo renderizaremos 5 */}
                             <PortraitCarrousel
                                 componentStyle={style.portraitComponent}
                             />
@@ -67,17 +64,7 @@ const HomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
                         </Animated.View>
                     </ScrollView>
                     <Animated.View style={{ opacity }}>
-                        <LinearGradient
-                            colors={[
-                                "rgba(0, 0, 0, 0.012)",
-                                "rgba(0, 0, 0, 0.9)",
-                                "#000",
-                            ]}
-                            style={style.navigationBar}
-                        >
-                            <Text style={{ color: "white" }}>Inicio</Text>
-                            <Text style={{ color: "white" }}>Buscar</Text>
-                        </LinearGradient>
+                        <BottomBar />
                     </Animated.View>
                 </>
             )}
@@ -100,34 +87,7 @@ const style = StyleSheet.create({
         flex: 1,
         width: width,
         justifyContent: "center",
-    },
-    navigationBar: {
-        // backgroundColor: "rgb(29, 185, 84)",
-        position: "absolute",
-        bottom: 0,
-        display: "flex",
-        flexDirection: "row",
-        width: width,
-        height: 90,
-        justifyContent: "space-around",
-        alignItems: "center",
-    },
-    topBar: {
-        backgroundColor: "transparent",
-        display: "flex",
-        flexDirection: "row",
-        width: width,
-        height: 120,
-        justifyContent: "flex-end",
-        alignItems: "flex-end",
-        position: "relative",
-        top: -20,
-    },
-    topBarGradient: {
-        width: width,
-        height: 120,
-        position: "absolute",
-        backgroundColor: "transparent",
+        paddingBottom: 120,
     },
     portraitComponent: {
         marginLeft: 15,

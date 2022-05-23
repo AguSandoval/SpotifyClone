@@ -1,19 +1,27 @@
-import {
-    View,
-    Text,
-    Image,
-    StyleSheet,
-    ScrollView,
-    ViewStyle,
-} from "react-native";
+import { View, Text, StyleSheet, ScrollView, ViewStyle } from "react-native";
 import React, { useEffect, useState } from "react";
 import getRecommendedChannels from "../../services/getRecommendedChannels";
-import { IRecommendedChannel } from "../../interfaces/interfaces";
+import { IRecommendedChannel } from "../../interfaces";
 import Portrait from "../Portrait";
 
 export interface IPortraitCarrouselProps {
     componentStyle?: ViewStyle;
 }
+
+const randomTitleCover = [
+    "Es viernes!",
+    "Para viajar",
+    "Interesante",
+    "Recomendados",
+    "Nuevos",
+    "Populares",
+    "Top 100",
+    "Exitos en Latinoamerica",
+    "Exitos en el Mundo",
+    "Exitos en España",
+    "Los mas escuchados",
+    "Infaltables",
+]; // Estos textos en Spotify provienen de la actividad del usuario, aqui los generaremos al azar.
 
 const PortraitCarrousel: React.FC<IPortraitCarrouselProps> = ({
     componentStyle,
@@ -31,13 +39,20 @@ const PortraitCarrousel: React.FC<IPortraitCarrouselProps> = ({
         fetchData();
     }, []);
 
+    // Es posible hacer un validación si esta cargando, renderizar un spinner, etc.
     return (
         <View style={componentStyle}>
-            <Text style={style.containerTitle}>Hola test</Text>
+            <Text style={style.containerTitle}>
+                {randomTitleCover[Math.floor(Math.random() * 10)]}
+            </Text>
             <ScrollView horizontal={true}>
                 {recommendedChannels.map((channel, index) => {
                     return index > 4 ? null : (
-                        Portrait
+                        <Portrait
+                            key={channel.id}
+                            title={channel.title}
+                            image={channel.urls.logo_image.original}
+                        />
                     );
                 })}
             </ScrollView>
@@ -59,26 +74,6 @@ const style = StyleSheet.create({
         fontWeight: "bold",
         marginTop: 25,
         marginBottom: 15,
-    },
-    portraitContainer: {
-        justifyContent: "center",
-        alignItems: "center",
-        marginRight: 15,
-        width: 150,
-        height: 180,
-    },
-    portraitLogo: {
-        width: 150,
-        height: 150,
-        marginBottom: 10,
-    },
-    portraitText: {
-        textAlign: "center",
-        fontSize: 16,
-        fontWeight: "bold",
-        color: "white",
-        width: 150,
-        height: 20,
     },
 });
 
