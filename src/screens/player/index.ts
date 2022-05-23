@@ -1,1 +1,3 @@
-export * from "./Player";
+import PlayScreen from "./Player";
+
+export default PlayScreen;

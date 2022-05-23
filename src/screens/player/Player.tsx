@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const Player: React.FC<{navigation: any}> = ({navigation}) => {
+const PlayScreen: React.FC<{navigation: any}> = ({navigation}) => {
     return (
         <View>
             <Text>player</Text>
@@ -9,4 +9,4 @@ const Player: React.FC<{navigation: any}> = ({navigation}) => {
     );
 };
 
-export default Player;
+export default PlayScreen;
