@@ -1,7 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import Home from "./src/screens/home/Home";
-import Player from "./src/screens/player/Player";
+import HomeScreen from "./src/screens/home";
+import PlayerScreen from "./src/screens/player";
+import ChannelScreen from "./src/screens/channel";
+import TopBar from "./src/components/TopBar";
+import { View } from "react-native";
+import BottomBar from "./src/components/BottomBar";
 
 const Stack = createNativeStackNavigator();
 
@@ -11,12 +15,25 @@ export default function App() {
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen
                     name="Home"
-                    component={Home}
+                    component={HomeScreen}
                     options={{
                         headerShown: false,
                     }}
                 />
-                <Stack.Screen name="Player" component={Player} />
+                <Stack.Screen
+                    name="Channel"
+                    component={ChannelScreen}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+                <Stack.Screen
+                    name="Player"
+                    component={PlayerScreen}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );

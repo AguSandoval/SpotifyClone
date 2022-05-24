@@ -6,6 +6,7 @@ import Portrait from "../Portrait";
 
 export interface IPortraitCarrouselProps {
     componentStyle?: ViewStyle;
+    navigation: any;
 }
 
 const randomTitleCover = [
@@ -24,7 +25,7 @@ const randomTitleCover = [
 ]; // Estos textos en Spotify provienen de la actividad del usuario, aqui los generaremos al azar.
 
 const PortraitCarrousel: React.FC<IPortraitCarrouselProps> = ({
-    componentStyle,
+    componentStyle, navigation
 }) => {
     const [recommendedChannels, setRecommendedChannels] = useState<
         IRecommendedChannel[]
@@ -50,8 +51,10 @@ const PortraitCarrousel: React.FC<IPortraitCarrouselProps> = ({
                     return index > 4 ? null : (
                         <Portrait
                             key={channel.id}
+                            channelId={channel.id}
                             title={channel.title}
                             image={channel.urls.logo_image.original}
+                            navigation={navigation}
                         />
                     );
                 })}

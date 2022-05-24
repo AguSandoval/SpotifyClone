@@ -4,12 +4,28 @@ import React from "react";
 export interface IPortraitProps {
     title: string;
     image: string;
+    channelId: number;
+    navigation?: any;
 }
 
-const Portrait: React.FC<IPortraitProps> = ({ title, image }) => {
+const Portrait: React.FC<IPortraitProps> = ({
+    title,
+    image,
+    channelId,
+    navigation,
+}) => {
     return (
         <View style={style.portraitContainer}>
-            <TouchableOpacity activeOpacity={0.6}>
+            <TouchableOpacity
+                activeOpacity={0.6}
+                onPress={() => {
+                    navigation?.navigate("Channel", {
+                        title,
+                        image,
+                        channelId,
+                    });
+                }}
+            >
                 <Image
                     style={style.portraitImage}
                     source={{

@@ -1,23 +1,42 @@
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { EvilIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 const width = Dimensions.get("window").width;
 
-const TopBar = () => {
+const TopBar: React.FC<{ navigation?: any; isBackable?: boolean }> = ({
+    navigation,
+    isBackable,
+}) => {
+    const justifyContent = isBackable ? "flex-start" : "flex-end";
     return (
-        <View style={style.topBar}>
+        <View style={{ ...style.topBar, justifyContent }}>
             <LinearGradient
-                colors={["rgb(29, 185, 84)", "transparent"]}
+                colors={[
+                    isBackable
+                        ? "#" +
+                          Math.floor(Math.random() * 16777215).toString(16) // Generando color random
+                        : "rgb(29, 185, 84)",
+                    "transparent",
+                ]}
                 style={style.topBarGradient}
             />
-            <EvilIcons
-                name="gear"
-                size={40}
-                color="white"
-                style={{ marginRight: 10 }}
-            />
+            <TouchableOpacity
+                style={{ marginHorizontal: 20 }}
+                onPress={() => {
+                    isBackable
+                        ? navigation.goBack()
+                        : navigation?.navigate("Home");
+                }}
+            >
+                {!isBackable ? (
+                    <EvilIcons name="gear" size={40} color="white" />
+                ) : (
+                    <AntDesign name="down" size={30} color="white" />
+                )}
+            </TouchableOpacity>
         </View>
     );
 };

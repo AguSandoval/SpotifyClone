@@ -3,7 +3,6 @@ import { useState } from "react";
 import {
     StyleSheet,
     ScrollView,
-    Text,
     Animated,
     View,
     Dimensions,
@@ -48,18 +47,23 @@ const HomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
                             {/* En Spotify se renderiza según la actividad del usuario, aquí sólo renderizaremos 5 */}
                             <PortraitCarrousel
                                 componentStyle={style.portraitComponent}
+                                navigation={navigation}
                             />
                             <PortraitCarrousel
                                 componentStyle={style.portraitComponent}
+                                navigation={navigation}
                             />
                             <PortraitCarrousel
                                 componentStyle={style.portraitComponent}
+                                navigation={navigation}
                             />
                             <PortraitCarrousel
                                 componentStyle={style.portraitComponent}
+                                navigation={navigation}
                             />
                             <PortraitCarrousel
                                 componentStyle={style.portraitComponent}
+                                navigation={navigation}
                             />
                         </Animated.View>
                     </ScrollView>
